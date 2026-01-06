@@ -9,7 +9,7 @@ internal static class BuildInfo
     public const string Copyright = "Copyright © 2024";
     public const string Version = "1.0.3";
     public const string AssemblyVersion = $"{Version}.0";
-    public const string MelonLoaderVersion = "0.7.2";
+    //public const string MelonLoaderVersion = "0.7.2";
     public const string GUIName = "Affliction Component";
 
     // Optional
