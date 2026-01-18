@@ -3,7 +3,7 @@ using Il2CppInterop.Runtime.Attributes;
 
 namespace AfflictionComponent.Components;
 
-[RegisterTypeInIl2Cpp(false)]
+[RegisterTypeInIl2Cpp]
 public class AfflictionManager : MonoBehaviour
 {
     public List<CustomAffliction> m_Afflictions = [];

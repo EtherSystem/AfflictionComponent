@@ -4,7 +4,7 @@ namespace AfflictionComponent.Patches.PanelFirstAidPatches;
 
 internal static class UpdateBodyIconColors
 {
-    [HarmonyPatch(nameof(Panel_FirstAid), nameof(Panel_FirstAid.UpdateBodyIconColors))]
+    [HarmonyPatch(typeof(Panel_FirstAid), nameof(Panel_FirstAid.UpdateBodyIconColors))]
     private static class OverrideUpdateBodyIconColors
     {
         private static void Postfix(Panel_FirstAid __instance, AfflictionButton afflictionButton, bool isButtonSelected, int bodyIconIndex)

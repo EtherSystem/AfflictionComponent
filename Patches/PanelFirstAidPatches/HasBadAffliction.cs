@@ -4,7 +4,7 @@ namespace AfflictionComponent.Patches.PanelFirstAidPatches;
 
 internal static class HasBadAffliction
 {
-    [HarmonyPatch(nameof(Panel_FirstAid), nameof(Panel_FirstAid.HasBadAffliction))]
+    [HarmonyPatch(typeof(Panel_FirstAid), nameof(Panel_FirstAid.HasBadAffliction))]
     private static class HasCustomBadAffliction
     {
         private static void Postfix(Panel_FirstAid __instance, ref bool __result)

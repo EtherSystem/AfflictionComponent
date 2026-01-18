@@ -5,7 +5,7 @@ namespace AfflictionComponent.Patches.StatusBarPatches;
 
 internal static class IsBuffActive
 {
-    [HarmonyPatch(nameof(StatusBar), nameof(StatusBar.IsBuffActive))]
+    [HarmonyPatch(typeof(StatusBar), nameof(StatusBar.IsBuffActive))]
     private static class IsCustomAfflictionBuffActive
     {
         private static void Postfix(StatusBar __instance, ref bool __result)

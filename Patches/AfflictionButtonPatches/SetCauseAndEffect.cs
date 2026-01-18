@@ -5,7 +5,7 @@ namespace AfflictionComponent.Patches.AfflictionButtonPatches;
 
 internal static class SetCauseAndEffect
 {
-    [HarmonyPatch(nameof(AfflictionButton), nameof(AfflictionButton.SetCauseAndEffect))]
+    [HarmonyPatch(typeof(AfflictionButton), nameof(AfflictionButton.SetCauseAndEffect))]
     private static class SwapAfflictionButtonIconToCustomAtlas
     {
         private static void Postfix(AfflictionButton __instance, string causeStr, AfflictionType affType, AfflictionBodyArea location, int index, string effectName, string spriteName)

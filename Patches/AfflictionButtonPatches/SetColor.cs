@@ -4,7 +4,7 @@ namespace AfflictionComponent.Patches.AfflictionButtonPatches;
 
 internal static class SetColor
 {
-    [HarmonyPatch(nameof(AfflictionButton), nameof(AfflictionButton.SetColor))]
+    [HarmonyPatch(typeof(AfflictionButton), nameof(AfflictionButton.SetColor))]
     private static class HasCustomRiskAffliction
     {
         private static void Postfix(AfflictionButton __instance, bool isSelected)

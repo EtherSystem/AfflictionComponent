@@ -4,7 +4,7 @@ namespace AfflictionComponent.Patches.AfflictionButtonPatches;
 
 internal static class GetColorBasedOnAffliction
 {
-    [HarmonyPatch(nameof(AfflictionButton), nameof(AfflictionButton.GetColorBasedOnAffliction))]
+    [HarmonyPatch(typeof(AfflictionButton), nameof(AfflictionButton.GetColorBasedOnAffliction))]
     private static class GetColorBasedOnCustomAffliction
     {
         private static void Postfix(AfflictionButton __instance, AfflictionType m_AfflictionType, bool isHovering, ref Color __result)

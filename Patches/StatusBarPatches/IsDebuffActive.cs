@@ -4,7 +4,7 @@ namespace AfflictionComponent.Patches.StatusBarPatches;
 
 internal static class IsDebuffActive
 {
-    [HarmonyPatch(nameof(StatusBar), nameof(StatusBar.IsDebuffActive))]
+    [HarmonyPatch(typeof(StatusBar), nameof(StatusBar.IsDebuffActive))]
     private static class IsCustomAfflictionDebuffActive
     {
         private static void Postfix(StatusBar __instance, ref bool __result)

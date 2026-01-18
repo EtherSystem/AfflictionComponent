@@ -4,7 +4,7 @@ namespace AfflictionComponent.Patches.PanelHUDPatches;
 
 internal static class DoShowBuffNotification
 {
-    [HarmonyPatch(nameof(Panel_HUD), nameof(Panel_HUD.DoShowBuffNotification))]
+    [HarmonyPatch(typeof(Panel_HUD), nameof(Panel_HUD.DoShowBuffNotification))]
     private static class SwapBuffSpriteAtlas
     {
         private static void Postfix(Panel_HUD __instance, Panel_HUD.BuffNotification buffNotification)

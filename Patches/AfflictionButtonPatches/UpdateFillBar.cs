@@ -7,7 +7,7 @@ internal static class UpdateFillBar
 {
     // Index was out of range error occurs in this patch when the percentage reaches 100% and is removed from the m_Afflictions list in AfflictionManager.
     // The cause of the problem with the directional indicator seems to be the animator, I don't know why it's treating our custom affliction differently though.
-    [HarmonyPatch(nameof(AfflictionButton), nameof(AfflictionButton.UpdateFillBar))]
+    [HarmonyPatch(typeof(AfflictionButton), nameof(AfflictionButton.UpdateFillBar))]
     private static class UpdateFillBarCustomRiskAffliction
     {
         private static void Postfix(AfflictionButton __instance)
