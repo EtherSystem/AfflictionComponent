@@ -15,25 +15,53 @@ public static class ImageUtilities
         Mod.Logger.Log("GetImage", FlaggedLoggingLevel.Debug, LoggingSubType.IntraSeparator);
 
         try
-        {
-            Assembly? assembly = Assembly.GetExecutingAssembly();
-            using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
-            {
-                if (stream == null)
-                {
-                    Mod.Logger.Log($"The embedded resource was not found: {resourceName}", FlaggedLoggingLevel.Error);
-                    return null;
-                }
+		{
+    		Assembly? foundAssembly = null;
+    		Stream? stream = null;
 
-                resourceData = new byte[stream.Length];
-                stream.Read(resourceData, 0, (int)stream.Length);
-            }
-        }
-        catch (Exception e)
-        {
-            Mod.Logger.Log($"Attempting to load embedded resource failed", FlaggedLoggingLevel.Exception, e);
-            return null;
-        }
+    		stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+    		if (stream != null)
+    		{
+        		foundAssembly = Assembly.GetExecutingAssembly();
+    		}
+    		else
+    		{
+        		foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        		{
+            		try
+            		{
+                		stream = assembly.GetManifestResourceStream(resourceName);
+                		if (stream != null)
+                		{
+                    		foundAssembly = assembly;
+                    		break;
+                		}
+            		}
+            		catch
+            		{
+            		}
+        		}
+    		}
+
+    		if (stream == null)
+    		{
+        		Mod.Logger.Log($"The embedded resource was not found in loaded assemblies: {resourceName}", FlaggedLoggingLevel.Error);
+        		return null;
+    		}
+
+    		using (stream)
+    		{
+        		resourceData = new byte[stream.Length];
+        		stream.Read(resourceData, 0, (int)stream.Length);
+    		}
+
+    		Mod.Logger.Log($"Found resource in assembly: {foundAssembly?.GetName().Name}", FlaggedLoggingLevel.Debug);
+		}
+		catch (Exception e)
+		{
+    		Mod.Logger.Log($"Attempting to load embedded resource failed", FlaggedLoggingLevel.Exception, e);
+    		return null;
+		}
 
         if (resourceData == null)
         {
